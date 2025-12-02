@@ -6,15 +6,31 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+
+                    <!-- Breadcrumb -->
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item active"><i class="bx bx-book-open"></i> {{ $title }}</li>
                         </ol>
                     </div>
+
+                    <!-- Logout Button -->
+                    <div>
+                        @auth
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </button>
+                        </form>
+                        @endauth
+                    </div>
+
                 </div>
             </div>
         </div>
 
+        <!-- content -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -52,7 +68,7 @@
 
                                         <td class="text-center">
                                             @if($student->status != 2)
-                                             <!-- Edit -->
+                                            <!-- Edit -->
                                             <a href="{{ route('students.edit', $student->id) }}" class="btn btn-outline-info">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
